@@ -136,7 +136,7 @@ int main(void)
   LCD_setCLK(CLK_GPIO_Port, CLK_Pin);
 
   LCD_init();
-  LCD_print("Hello World", 1, 1);
+  LCD_print("Hello World", 0, 0);
   uint16_t dc;
   char adc_str[10];
 
@@ -152,9 +152,9 @@ int main(void)
 	  dc = 1245;
 	  TIM1->CCR1 = dc;
 	  sprintf(adc_str, "%d", dc);
-	  LCD_drawRectangle(0,48,0,84);
-	  LCD_print("ADC: %d",1, 0);
-	  LCD_print(adc_str,1, 8);
+   //   LCD_drawRectangle(0,48,0,84);
+
+	  LCD_print(adc_str,1, 0);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
