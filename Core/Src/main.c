@@ -74,16 +74,7 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-  LCD_setRST(RST_GPIO_Port, RST_Pin);
-  LCD_setCE(CE_GPIO_Port, CE_Pin);
-  LCD_setDC(DC_GPIO_Port, DC_Pin);
-  LCD_setDIN(DIN_GPIO_Port, DIN_Pin);
-  LCD_setCLK(CLK_GPIO_Port, CLK_Pin);
 
-  LCD_init();
-  LCD_print("Hello World", 0, 0);
-
-  /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
@@ -101,6 +92,16 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   /* USER CODE BEGIN Init */
+  LCD_setRST(RST_GPIO_Port, RST_Pin);
+  LCD_setCE(CE_GPIO_Port, CE_Pin);
+  LCD_setDC(DC_GPIO_Port, DC_Pin);
+  LCD_setDIN(DIN_GPIO_Port, DIN_Pin);
+  LCD_setCLK(CLK_GPIO_Port, CLK_Pin);
+
+  LCD_init();
+  LCD_print("Hello World", 0, 0);
+
+  /* USER CODE END Init */
 
 
 

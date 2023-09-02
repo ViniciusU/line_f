@@ -2916,17 +2916,17 @@ LOAD C:/ST/STM32CubeIDE_1.13.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x0000000000014245      0x1b6 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
  .debug_macro   0x00000000000143fb      0x1d4 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
 
-.debug_line     0x0000000000000000     0x59f5
+.debug_line     0x0000000000000000     0x59f3
  .debug_line    0x0000000000000000      0xc8b ./Core/Inc/nokia5110_LCD.o
- .debug_line    0x0000000000000c8b      0x7c1 ./Core/Src/main.o
- .debug_line    0x000000000000144c      0x6fe ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x0000000000001b4a      0x7c0 ./Core/Src/stm32f4xx_it.o
- .debug_line    0x000000000000230a      0x77f ./Core/Src/system_stm32f4xx.o
- .debug_line    0x0000000000002a89       0x7a ./Core/Startup/startup_stm32f411ceux.o
- .debug_line    0x0000000000002b03      0x9e5 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
- .debug_line    0x00000000000034e8      0xc94 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
- .debug_line    0x000000000000417c      0xb1d ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
- .debug_line    0x0000000000004c99      0xd5c ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_line    0x0000000000000c8b      0x7bf ./Core/Src/main.o
+ .debug_line    0x000000000000144a      0x6fe ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0000000000001b48      0x7c0 ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x0000000000002308      0x77f ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x0000000000002a87       0x7a ./Core/Startup/startup_stm32f411ceux.o
+ .debug_line    0x0000000000002b01      0x9e5 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_line    0x00000000000034e6      0xc94 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_line    0x000000000000417a      0xb1d ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_line    0x0000000000004c97      0xd5c ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
 
 .debug_str      0x0000000000000000    0x7f32f
  .debug_str     0x0000000000000000    0x7dc8d ./Core/Inc/nokia5110_LCD.o
