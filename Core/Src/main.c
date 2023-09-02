@@ -127,6 +127,36 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   /* USER CODE BEGIN Init */
+  LCD_setRST(RST_GPIO_Port, RST_Pin);
+  LCD_setCE(CE_GPIO_Port, CE_Pin);
+  LCD_setDC(DC_GPIO_Port, DC_Pin);
+  LCD_setDIN(DIN_GPIO_Port, DIN_Pin);
+  LCD_setCLK(CLK_GPIO_Port, CLK_Pin);
+
+
+  LCD_init();
+  LCD_print("Hello World", 0, 0);
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_ADC1_Init();
+  MX_TIM1_Init();
+  /* USER CODE BEGIN 2 */
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  /* USER CODE BEGIN Init */
 
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   LCD_setRST(RST_GPIO_Port, RST_Pin);
@@ -149,13 +179,15 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+
+   //   LCD_drawRectangle(0,48,0,84);
+
+
+    /* USER CODE BEGIN 3 */
 	  dc = 1245;
 	  TIM1->CCR1 = dc;
 	  sprintf(adc_str, "%d", dc);
-   //   LCD_drawRectangle(0,48,0,84);
-
 	  LCD_print(adc_str,0, 1);
-    /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
@@ -276,7 +308,7 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 16-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 500-1;
+  htim1.Init.Period = 2000-1;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
