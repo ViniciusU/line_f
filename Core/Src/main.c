@@ -154,7 +154,7 @@ int main(void)
 	  sprintf(adc_str, "%d", dc);
    //   LCD_drawRectangle(0,48,0,84);
 
-	  LCD_print(adc_str,1, 0);
+	  LCD_print(adc_str,0, 1);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
