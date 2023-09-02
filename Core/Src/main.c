@@ -73,15 +73,6 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-  LCD_setRST(BL_GPIO_Port, BL_Pin);
-  LCD_setCE(CLK_GPIO_Port, CLK_Pin);
-  LCD_setDC(DIN_GPIO_Port, DC_Pin);
-  LCD_setDIN(CE_GPIO_Port , CE_Pin);
-  LCD_setCLK(RST_GPIO_Port , RST_Pin);
-
-  LCD_init();
-  LCD_print("Hello World", 0, 0);
 
 
 
@@ -102,6 +93,16 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  /* USER CODE BEGIN Init */
+  LCD_setRST(BL_GPIO_Port, BL_Pin);
+  LCD_setCE(CLK_GPIO_Port, CLK_Pin);
+  LCD_setDC(DIN_GPIO_Port, DC_Pin);
+  LCD_setDIN(CE_GPIO_Port , CE_Pin);
+  LCD_setCLK(RST_GPIO_Port , RST_Pin);
+
+  LCD_init();
+  LCD_print("Hello World", 0, 0);
+
   while (1)
   {
     /* USER CODE END WHILE */

@@ -906,54 +906,53 @@ int main(void)
   HAL_Init();
  800084c:	f000 f94c 	bl	8000ae8 <HAL_Init>
 
-  /* USER CODE BEGIN Init */
-  LCD_setRST(BL_GPIO_Port, BL_Pin);
- 8000850:	f44f 4100 	mov.w	r1, #32768	; 0x8000
- 8000854:	480f      	ldr	r0, [pc, #60]	; (8000894 <main+0x4c>)
- 8000856:	f7ff fe3d 	bl	80004d4 <LCD_setRST>
-  LCD_setCE(CLK_GPIO_Port, CLK_Pin);
- 800085a:	2108      	movs	r1, #8
- 800085c:	480d      	ldr	r0, [pc, #52]	; (8000894 <main+0x4c>)
- 800085e:	f7ff fe4d 	bl	80004fc <LCD_setCE>
-  LCD_setDC(DIN_GPIO_Port, DC_Pin);
- 8000862:	2140      	movs	r1, #64	; 0x40
- 8000864:	480b      	ldr	r0, [pc, #44]	; (8000894 <main+0x4c>)
- 8000866:	f7ff fe5d 	bl	8000524 <LCD_setDC>
-  LCD_setDIN(CE_GPIO_Port , CE_Pin);
- 800086a:	2180      	movs	r1, #128	; 0x80
- 800086c:	4809      	ldr	r0, [pc, #36]	; (8000894 <main+0x4c>)
- 800086e:	f7ff fe6d 	bl	800054c <LCD_setDIN>
-  LCD_setCLK(RST_GPIO_Port , RST_Pin);
- 8000872:	f44f 7180 	mov.w	r1, #256	; 0x100
- 8000876:	4807      	ldr	r0, [pc, #28]	; (8000894 <main+0x4c>)
- 8000878:	f7ff fe7c 	bl	8000574 <LCD_setCLK>
-
-  LCD_init();
- 800087c:	f7ff ff12 	bl	80006a4 <LCD_init>
-  LCD_print("Hello World", 0, 0);
- 8000880:	2200      	movs	r2, #0
- 8000882:	2100      	movs	r1, #0
- 8000884:	4804      	ldr	r0, [pc, #16]	; (8000898 <main+0x50>)
- 8000886:	f7ff ff85 	bl	8000794 <LCD_print>
-
 
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
- 800088a:	f000 f807 	bl	800089c <SystemClock_Config>
+ 8000850:	f000 f824 	bl	800089c <SystemClock_Config>
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
- 800088e:	f000 f863 	bl	8000958 <MX_GPIO_Init>
-
+ 8000854:	f000 f880 	bl	8000958 <MX_GPIO_Init>
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  /* USER CODE BEGIN Init */
+  LCD_setRST(BL_GPIO_Port, BL_Pin);
+ 8000858:	f44f 4100 	mov.w	r1, #32768	; 0x8000
+ 800085c:	480d      	ldr	r0, [pc, #52]	; (8000894 <main+0x4c>)
+ 800085e:	f7ff fe39 	bl	80004d4 <LCD_setRST>
+  LCD_setCE(CLK_GPIO_Port, CLK_Pin);
+ 8000862:	2108      	movs	r1, #8
+ 8000864:	480b      	ldr	r0, [pc, #44]	; (8000894 <main+0x4c>)
+ 8000866:	f7ff fe49 	bl	80004fc <LCD_setCE>
+  LCD_setDC(DIN_GPIO_Port, DC_Pin);
+ 800086a:	2140      	movs	r1, #64	; 0x40
+ 800086c:	4809      	ldr	r0, [pc, #36]	; (8000894 <main+0x4c>)
+ 800086e:	f7ff fe59 	bl	8000524 <LCD_setDC>
+  LCD_setDIN(CE_GPIO_Port , CE_Pin);
+ 8000872:	2180      	movs	r1, #128	; 0x80
+ 8000874:	4807      	ldr	r0, [pc, #28]	; (8000894 <main+0x4c>)
+ 8000876:	f7ff fe69 	bl	800054c <LCD_setDIN>
+  LCD_setCLK(RST_GPIO_Port , RST_Pin);
+ 800087a:	f44f 7180 	mov.w	r1, #256	; 0x100
+ 800087e:	4805      	ldr	r0, [pc, #20]	; (8000894 <main+0x4c>)
+ 8000880:	f7ff fe78 	bl	8000574 <LCD_setCLK>
+
+  LCD_init();
+ 8000884:	f7ff ff0e 	bl	80006a4 <LCD_init>
+  LCD_print("Hello World", 0, 0);
+ 8000888:	2200      	movs	r2, #0
+ 800088a:	2100      	movs	r1, #0
+ 800088c:	4802      	ldr	r0, [pc, #8]	; (8000898 <main+0x50>)
+ 800088e:	f7ff ff81 	bl	8000794 <LCD_print>
+
   while (1)
  8000892:	e7fe      	b.n	8000892 <main+0x4a>
  8000894:	40020400 	.word	0x40020400
