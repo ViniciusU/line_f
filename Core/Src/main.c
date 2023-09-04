@@ -212,6 +212,10 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa09c4e4f2138aec697b290cce4da5d86891dfe0
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -219,7 +223,11 @@ int main(void)
   /* USER CODE BEGIN Init */
 
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+<<<<<<< HEAD
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+=======
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+>>>>>>> aa09c4e4f2138aec697b290cce4da5d86891dfe0
   LCD_setRST(RST_GPIO_Port, RST_Pin);
   LCD_setCE(CE_GPIO_Port, CE_Pin);
   LCD_setDC(DC_GPIO_Port, DC_Pin);
@@ -229,8 +237,15 @@ int main(void)
   LCD_init();
   LCD_print("Hello World", 0, 0);
   uint16_t dc;
+<<<<<<< HEAD
   uint16_t dc_2;
+=======
+  uint16_t dc_0;
+  uint16_t readValue;
+>>>>>>> aa09c4e4f2138aec697b290cce4da5d86891dfe0
   char adc_str[10];
+
+  HAL_ADC_Start(&hadc1);
 
 
 
@@ -243,14 +258,24 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+<<<<<<< HEAD
 	  dc = 1225;
 	 // TIM1->CCR1 = dc;
 	  dc_2 = 0;
 	/*  TIM1->CCR3 = dc_2;*/
 	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dc); // Update duty cycle for PA8
 	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, dc_2); // Update duty cycle for PA10
+=======
+	  dc = 35000;
+	  dc_0 = 0;
+	  TIM1->CCR1 = dc;
+	  TIM1->CCR3 = dc_0;
+>>>>>>> aa09c4e4f2138aec697b290cce4da5d86891dfe0
 	  sprintf(adc_str, "%d", dc);
 	  LCD_print(adc_str,0, 1);
+	  HAL_ADC_PollForConversion(&hadc1,1000);
+	  readValue = HAL_ADC_GetValue(&hadc1);
+	  HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -320,7 +345,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
@@ -405,10 +430,13 @@ static void MX_TIM1_Init(void)
   {
     Error_Handler();
   }
+<<<<<<< HEAD
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
   {
     Error_Handler();
   }
+=======
+>>>>>>> aa09c4e4f2138aec697b290cce4da5d86891dfe0
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
