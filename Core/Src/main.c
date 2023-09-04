@@ -157,8 +157,70 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   /* USER CODE BEGIN Init */
+  LCD_setRST(RST_GPIO_Port, RST_Pin);
+  LCD_setCE(CE_GPIO_Port, CE_Pin);
+  LCD_setDC(DC_GPIO_Port, DC_Pin);
+  LCD_setDIN(DIN_GPIO_Port, DIN_Pin);
+  LCD_setCLK(CLK_GPIO_Port, CLK_Pin);
+
+
+  LCD_init();
+  LCD_print("Hello World", 0, 0);
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_ADC1_Init();
+  MX_TIM1_Init();
+  /* USER CODE BEGIN 2 */
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  /* USER CODE BEGIN Init */
+  LCD_setRST(RST_GPIO_Port, RST_Pin);
+  LCD_setCE(CE_GPIO_Port, CE_Pin);
+  LCD_setDC(DC_GPIO_Port, DC_Pin);
+  LCD_setDIN(DIN_GPIO_Port, DIN_Pin);
+  LCD_setCLK(CLK_GPIO_Port, CLK_Pin);
+
+
+  LCD_init();
+  LCD_print("Hello World", 0, 0);
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_ADC1_Init();
+  MX_TIM1_Init();
+  /* USER CODE BEGIN 2 */
+
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  /* USER CODE BEGIN Init */
 
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
   LCD_setRST(RST_GPIO_Port, RST_Pin);
   LCD_setCE(CE_GPIO_Port, CE_Pin);
   LCD_setDC(DC_GPIO_Port, DC_Pin);
@@ -168,7 +230,11 @@ int main(void)
   LCD_init();
   LCD_print("Hello World", 0, 0);
   uint16_t dc;
+  uint16_t dc_0;
+  uint16_t readValue;
   char adc_str[10];
+
+  HAL_ADC_Start(&hadc1);
 
 
 
@@ -180,14 +246,16 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-   //   LCD_drawRectangle(0,48,0,84);
-
-
     /* USER CODE BEGIN 3 */
-	  dc = 1245;
+	  dc = 35000;
+	  dc_0 = 0;
 	  TIM1->CCR1 = dc;
+	  TIM1->CCR3 = dc_0;
 	  sprintf(adc_str, "%d", dc);
 	  LCD_print(adc_str,0, 1);
+	  HAL_ADC_PollForConversion(&hadc1,1000);
+	  readValue = HAL_ADC_GetValue(&hadc1);
+	  HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -257,7 +325,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV2;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = DISABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
@@ -339,6 +407,10 @@ static void MX_TIM1_Init(void)
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
   }
