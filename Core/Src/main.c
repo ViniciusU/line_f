@@ -157,8 +157,69 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   /* USER CODE BEGIN Init */
+  LCD_setRST(RST_GPIO_Port, RST_Pin);
+  LCD_setCE(CE_GPIO_Port, CE_Pin);
+  LCD_setDC(DC_GPIO_Port, DC_Pin);
+  LCD_setDIN(DIN_GPIO_Port, DIN_Pin);
+  LCD_setCLK(CLK_GPIO_Port, CLK_Pin);
+
+
+  LCD_init();
+  LCD_print("Hello World", 0, 0);
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_ADC1_Init();
+  MX_TIM1_Init();
+  /* USER CODE BEGIN 2 */
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  /* USER CODE BEGIN Init */
+  LCD_setRST(RST_GPIO_Port, RST_Pin);
+  LCD_setCE(CE_GPIO_Port, CE_Pin);
+  LCD_setDC(DC_GPIO_Port, DC_Pin);
+  LCD_setDIN(DIN_GPIO_Port, DIN_Pin);
+  LCD_setCLK(CLK_GPIO_Port, CLK_Pin);
+
+
+  LCD_init();
+  LCD_print("Hello World", 0, 0);
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_ADC1_Init();
+  MX_TIM1_Init();
+  /* USER CODE BEGIN 2 */
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  /* USER CODE BEGIN Init */
 
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
   LCD_setRST(RST_GPIO_Port, RST_Pin);
   LCD_setCE(CE_GPIO_Port, CE_Pin);
   LCD_setDC(DC_GPIO_Port, DC_Pin);
@@ -168,6 +229,7 @@ int main(void)
   LCD_init();
   LCD_print("Hello World", 0, 0);
   uint16_t dc;
+  uint16_t dc_2;
   char adc_str[10];
 
 
@@ -180,12 +242,13 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
-   //   LCD_drawRectangle(0,48,0,84);
-
-
     /* USER CODE BEGIN 3 */
-	  dc = 1245;
-	  TIM1->CCR1 = dc;
+	  dc = 1225;
+	 // TIM1->CCR1 = dc;
+	  dc_2 = 0;
+	/*  TIM1->CCR3 = dc_2;*/
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, dc); // Update duty cycle for PA8
+	  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_2, dc_2); // Update duty cycle for PA10
 	  sprintf(adc_str, "%d", dc);
 	  LCD_print(adc_str,0, 1);
   }
@@ -339,6 +402,14 @@ static void MX_TIM1_Init(void)
   sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
   sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
   if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_3) != HAL_OK)
   {
     Error_Handler();
   }
